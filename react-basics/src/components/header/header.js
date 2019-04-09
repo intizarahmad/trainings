@@ -1,10 +1,12 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import './header.css';
 const header = () => {
     return (
-        <div class="topnav">
-            <a class="active" href="home">Home</a>
-            <a href="users">Users</a>
+        <div className="topnav">
+            <NavLink to="/home" exact= {true}  >Home</NavLink>
+            <NavLink to="/users" >Users</NavLink>
+            <NavLink to="/about">About</NavLink>
       </div>
     );
 };

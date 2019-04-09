@@ -39,7 +39,7 @@ class Users extends Component {
         const {usersDetails} = this.state;
         
         return (
-            <div>
+            <div style={{marginTop: '20px'}}>
                 {
                     usersDetails.length > 0  ?
                     usersDetails.map((item)=>{
