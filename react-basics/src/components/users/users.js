@@ -37,13 +37,15 @@ class Users extends Component {
 
     render() {
         const {usersDetails} = this.state;
-        if(usersDetails.length > 0){}
+        
         return (
             <div>
                 {
+                    usersDetails.length > 0  ?
                     usersDetails.map((item)=>{
                         return <User userdetails={item} key={item.id} onDelete = {this.deleteUser}/>
                     })
+                    :'No data found'
                 }
 
                 {/* <div className="card">
