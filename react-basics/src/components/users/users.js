@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './users.css';
 import User from './user';
+import AddUser from './addUser';
 class Users extends Component {
     constructor(props) {
         super(props);
         this.state ={
+            isShowUser: false,
+            buttonText: 'Add New User',
             usersDetails : [
                 {
                     id: '1',
@@ -34,12 +37,31 @@ class Users extends Component {
             usersDetails : usersDetails.filter(item=>item.id !==id)
         });
     }
-
+    
+    saveUserDetails = (user)=>{
+        console.log('saveUserDetails', user);
+        let newUser = {...user, id: 10}
+        const {usersDetails}  = this.state; 
+        this.setState({
+            usersDetails : usersDetails.concat(newUser)
+        });
+    }
+    toggleUser = ()=>{
+            this.setState({
+                isShowUser: !this.state.isShowUser,
+                buttonText: this.state.isShowUser?'Add New User':'Hide User'
+            })
+    }
     render() {
-        const {usersDetails} = this.state;
+        const {usersDetails, buttonText, isShowUser} = this.state;
         
         return (
             <div style={{marginTop: '20px'}}>
+                <button style ={{width:'200px', marginBottom: '20px'}} onClick= {this.toggleUser} >{buttonText}</button>
+               {
+                   isShowUser && <AddUser saveUser={this.saveUserDetails}/>
+               } 
+                <div >
                 {
                     usersDetails.length > 0  ?
                     usersDetails.map((item)=>{
@@ -47,7 +69,7 @@ class Users extends Component {
                     })
                     :'No data found'
                 }
-
+                </div>
                 {/* <div className="card">
                     <h1>{usersDetails['0'].name}</h1>
                     <p className="title">{usersDetails['0'].designation}</p>
